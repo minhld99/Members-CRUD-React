@@ -1,8 +1,21 @@
 import './../styles/table.css';
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import EditUser from './EditUser'
 
 function UserTable( { users } ) {
+  const [listUsers, setListUsers] = useState([])
+
+  useEffect(() => {
+    setListUsers(users)
+  }, [users])
+
+  const handleDeleteUSer = (deleteUser) => {
+    const newListUsers = [...listUsers]
+    const deleteIndex = newListUsers.findIndex(user => user.key === deleteUser.key)
+    newListUsers.splice(deleteIndex,1)
+    setListUsers([...newListUsers])
+  }
+  
   return (
     <div>
       <h1 id='title'>Member List</h1>
@@ -17,8 +30,8 @@ function UserTable( { users } ) {
           </tr>
         </thead>
         <tbody>
-          {users.length > 0 ? (
-            users.map((user) => (
+          {listUsers.length > 0 ? (
+            listUsers.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
@@ -26,7 +39,7 @@ function UserTable( { users } ) {
                 <td>{user.task}</td>
                 <td className='opration'>
                   <EditUser user={user} />
-                  <button className="button muted-button">Delete</button>
+                  <button className="button muted-button " onClick = {() => handleDeleteUSer(user)}>Delete</button>
                 </td>
               </tr>
             ))
