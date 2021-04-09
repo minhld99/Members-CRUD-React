@@ -7,11 +7,11 @@ function UserTable( { users } ) {
       <table id='user'>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>PHONE</th>
-            <th>OPERATION</th>
+            <th>番号</th>
+            <th>名前</th>
+            <th>学籍番号</th>
+            <th>タスク</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
@@ -20,8 +20,8 @@ function UserTable( { users } ) {
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.phone}</td>
+                <td>{user.student_id}</td>
+                <td>{user.task}</td>
                 <td className='opration'>
                   <button className="button muted-button">Edit</button>
                   <button className="button muted-button">Delete</button>
@@ -30,7 +30,7 @@ function UserTable( { users } ) {
             ))
           ) : (
             <tr>
-              <td colSpan={3}>No users</td>
+              <td colSpan={5}>No members</td>
             </tr>
           )}
         </tbody>
