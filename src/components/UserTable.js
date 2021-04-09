@@ -1,4 +1,6 @@
 import './../styles/table.css';
+import React from 'react'
+import EditUser from './EditUser'
 
 function UserTable( { users } ) {
   return (
@@ -23,7 +25,7 @@ function UserTable( { users } ) {
                 <td>{user.email}</td>
                 <td>{user.phone}</td>
                 <td className='opration'>
-                  <button className="button muted-button">Edit</button>
+                  <EditUser user={user} />
                   <button className="button muted-button">Delete</button>
                 </td>
               </tr>

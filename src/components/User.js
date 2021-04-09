@@ -1,6 +1,6 @@
 import React from 'react'
 import UserTable from './UserTable'
-
+ 
 function User() {
   const [users, setUsers] = React.useState([
     { id: 1, name: 'Minh', email: 'minh@gmail.com', phone: '123456' },
@@ -16,6 +16,7 @@ function User() {
       <div className="panel-block">
         {users.length} users
       </div>
+      
     </div>
   );
 }
