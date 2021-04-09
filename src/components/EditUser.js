@@ -4,14 +4,14 @@ import UserTable from './UserTable'
 
 
 function EditUser( { user } ) {
-    const [email, setEmail] = React.useState('');
-    const [phone,setPhone] = React.useState('');
+    const [studentID, setStudentID] = React.useState('');
+    const [task, setTask] = React.useState('');
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        console.log(user,email,phone);
-        user.email=email;
-        user.phone=phone;
+        console.log(user,studentID,task);
+        user.studentID=studentID;
+        user.task=task;
         console.log('done',user);
     }
 
@@ -22,7 +22,7 @@ function EditUser( { user } ) {
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Edit User</h5>
+                <h5 className="modal-title" id="exampleModalLabel">Edit User {user.name}</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span>
                 </button>
@@ -30,12 +30,12 @@ function EditUser( { user } ) {
               <div className="modal-body">
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="recipient-name" className="col-form-label">Email:</label>
-                    <input type="text" className="form-control" id="recipient-name" value={email} onChange={e => setEmail(e.target.value)} />
+                    <label htmlFor="recipient-name" className="col-form-label">Student ID:</label>
+                    <input type="text" className="form-control" placeholder={user.studentID} id="recipient-name" value={studentID} onChange={e => setStudentID(e.target.value)} />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="message-text" className="col-form-label">Phone Number:</label>
-                    <textarea className="form-control" id="message-text" value={phone} onChange={e => setPhone(e.target.value)}/>
+                    <label htmlFor="message-text" className="col-form-label">Task:</label>
+                    <textarea className="form-control" placeholder={user.task} id="message-text" value={task} onChange={e => setTask(e.target.value)}/>
                   </div>
                   <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

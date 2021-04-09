@@ -5,12 +5,12 @@
 // import './styles/main.css';
 
 /* コンポーネント */
-import User from './components/User';
+import Tab from './components/Tab';
 
 function App() {
   return (
     <div className="container is-fluid">
-      <User />
+      <Tab />
     </div>
   );
 }
