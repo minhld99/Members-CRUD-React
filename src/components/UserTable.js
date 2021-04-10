@@ -2,25 +2,28 @@ import './../styles/table.css';
 import React, {useState, useEffect} from 'react'
 import EditUser from './EditUser'
 
-function UserTable( { users } ) {
+function UserTable( { users, handleLengthChange } ) {
   const [listUsers, setListUsers] = useState([])
 
   useEffect(() => {
     setListUsers(users)
   }, [users])
 
-  const handleDeleteUSer = (deleteUser) => {
+  const handleDeleteUser = (deleteUser) => {
+    console.log("deleteUser = ", deleteUser)
     const newListUsers = [...listUsers]
-    const deleteIndex = newListUsers.findIndex(user => user.key === deleteUser.key)
+    const deleteIndex = newListUsers.findIndex(user => user.id === deleteUser.id)
     newListUsers.splice(deleteIndex,1)
     setListUsers([...newListUsers])
+    handleLengthChange(newListUsers.length)
     window.localStorage.setItem("members-crud", JSON.stringify(newListUsers));
   }
 
-  const handleEditUser = (newInfor) =>{
+  const handleEditUser = (newInfo) => {
+    console.log("newInfo = ", newInfo)
     const newListUsers = [...listUsers]
-    const editIndex = newListUsers.findIndex(user => user.key === newInfor.key)
-    newListUsers[editIndex] = newInfor
+    const editIndex = newListUsers.findIndex(user => user.id === newInfo.id)
+    newListUsers[editIndex] = newInfo
     setListUsers([...newListUsers])
     window.localStorage.setItem("members-crud", JSON.stringify(newListUsers));
   }
@@ -28,7 +31,7 @@ function UserTable( { users } ) {
   
   return (
     <div>
-      <h1 id='title'>Member List</h1>
+      <h1 id='title'>メンバー・リスト</h1>
       <table id='user'>
         <thead>
           <tr>
@@ -46,8 +49,8 @@ function UserTable( { users } ) {
                 <td>{user.studentID}</td>
                 <td>{user.task}</td>
                 <td className='opration'>
-                  <EditUser user={user} handleEdit={(infor) =>handleEditUser(infor)}/>
-                  <button className="button muted-button " onClick = {() => handleDeleteUSer(user)}>Delete</button>
+                  <EditUser user={user} handleEdit={handleEditUser}/>
+                  <button className="button muted-button" onClick={() => handleDeleteUser(user)}>削除</button>
                 </td>
               </tr>
             ))

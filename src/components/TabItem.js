@@ -1,6 +1,6 @@
 import './../styles/tab.css';
 
-function TabItem({key, icon, title, onItemClicked, isActive}) {
+function TabItem({icon, title, onItemClicked, isActive}) {
   
   return (
     <div 
@@ -9,7 +9,7 @@ function TabItem({key, icon, title, onItemClicked, isActive}) {
     >
       <i className={icon}></i>
       <p className="tabitem__title">{title}</p>
-      {console.log(isActive)}
+      {/* {console.log(isActive)} */}
     </div>
   )
 }

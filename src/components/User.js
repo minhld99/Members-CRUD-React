@@ -1,30 +1,28 @@
 import React from 'react'
-import UserTable from './UserTable'
-import NewUser from './NewUser'
+import UserTable from './UserTable';
 
 /* カスタムフック */
 import useStorage from '../hooks/storage';
 
 function User() {
-  // const [users, setUsers] = React.useState([
-  //   { id: 1, name: 'Minh', email: 'minh@gmail.com', phone: '123456' },
-  //   { id: 2, name: 'T.Anh', email: 'tanh@gmail.com', phone: '123456' },
-  //   { id: 3, name: 'Công', email: 'cong@gmail.com', phone: '123456' },
-  //   { id: 4, name: 'Đức', email: 'duc@gmail.com', phone: '123456' },
-  //   { id: 5, name: 'Hằng', email: 'hang@gmail.com', phone: '123456' },
-  // ]);
+  const [length, setLength] = React.useState(JSON.parse(window.localStorage.getItem('members-crud')).length);
   
-  const [users, setUsers, clearUsers] = useStorage();
-  
+  const [users, , clearUsers] = useStorage();
+
+  const handleLengthChange = (newLength) => {
+    if (newLength === 0) clearUsers()
+    setLength(newLength);
+  }
+
   return (
     <div className="panel">
-      <UserTable users={users} />
+      <UserTable users={users} handleLengthChange={newLength => handleLengthChange(newLength)}/>
       <div className="panel-block">
-        {users.length !== 0 ? users.length + " members" : ''}
+        {length !== 0 ? length + (length > 1 ? " members" : " member") :  ''}
       </div>
 
-      <button className="button is-light is-fullwidth" onClick={clearUsers}>
-        Delete All
+      <button className="button is-light is-fullwidth" onClick={() => handleLengthChange(0)}>
+        全てのメンバーを削除
       </button>
 
     </div>

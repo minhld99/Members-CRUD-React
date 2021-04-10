@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import User from './User'
+import React from 'react'
 import './../styles/newUser.css';
 
 /* カスタムフック */
@@ -7,20 +6,23 @@ import useStorage from '../hooks/storage';
 
 function NewUser() {
   const initialFormState = { id: null, name: '', studentID: '', task: '' }
-  const [user, setUser] = useState(initialFormState)
+  const [user, setUser] = React.useState(initialFormState)
 
-  const [users, setUsers, clearUsers] = useStorage();
+  const [users, setUsers, ] = useStorage();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
-    console.log(name, value)
-    setUser({ ...user, [name]: value })
+    setUser({ ...user, [name]: value });
   }
   
   const addUser = (user) => {
-    const last_user = users[(users.length) - 1]
-    user.id = last_user.id + 1
+    if (users.length > 0) {
+      const last_user = users[(users.length) - 1]
+      user.id = last_user.id + 1
+    }
+    else user.id = users.length + 1
     setUsers([...users, user])
+    console.log(user)
   }
 
   return (
@@ -53,7 +55,7 @@ function NewUser() {
         value={user.task}
         onChange={handleInputChange}
       />
-      <button type="submit" is="add-button">Add new user</button>
+      <button type="submit" is="add-button">新しいメンバーを追加</button>
     </form>
   )
 }

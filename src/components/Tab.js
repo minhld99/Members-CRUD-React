@@ -9,27 +9,27 @@ function Tab() {
     {
       id: 1,
       icon: 'tabitem__icon fas fa-users',
-      title: 'Members',
+      title: 'メンバー',
       content: ( <User /> ),
     },
     {
       id: 2,
       icon: 'tabitem__icon fas fa-user-plus',
-      title: 'Add',
+      title: '追加',
       content: ( <NewUser /> ),
     },
-    {
-      id: 3,
-      icon: 'tabitem__icon fas fa-edit',
-      title: 'Edit',
-      content: 'edit function',
-    },
-    {
-      id: 4,
-      icon: 'tabitem__icon fas fa-user-slash',
-      title: 'Delete',
-      content: 'delete function',
-    },
+    // {
+    //   id: 3,
+    //   icon: 'tabitem__icon fas fa-edit',
+    //   title: '編集',
+    //   content: 'edit function',
+    // },
+    // {
+    //   id: 4,
+    //   icon: 'tabitem__icon fas fa-user-slash',
+    //   title: '削除',
+    //   content: 'delete function',
+    // },
   ];
   
   const [active, setActive] = React.useState(0);
@@ -38,8 +38,7 @@ function Tab() {
     <div className="wrapper">
       <div className="tabs">
         {tabItems.map(({ id, icon, title }) => (
-          <TabItem
-            key={title}
+          <TabItem key={id}
             icon={icon}
             title={title}
             onItemClicked={() => setActive(id)}
@@ -47,10 +46,10 @@ function Tab() {
           />
         ))}
       </div>
-      {console.log("==========")}
+      {/* {console.log("==========")} */}
       <div className="content">
         {tabItems.map(({ id, content }) => {
-          console.log(active, id)
+          // console.log(active, id)
           return active === id ? content : ''
         })}
       </div>
