@@ -14,9 +14,9 @@ function EditUser( { user } ) {
         for (i=0;i<members.length;i++){
           if (members[i].id == user.id) {
             if(studentID) 
-            members[i].studentID=studentID;
+              members[i].studentID=studentID;
             if(task)
-            members[i].task=task;
+              members[i].task=task;
           }
         }
         console.log('done', members);
