@@ -9,10 +9,19 @@ function EditUser( { user } ) {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        console.log(user,studentID,task);
-        user.studentID=studentID;
-        user.task=task;
-        console.log('done',user);
+        const members = JSON.parse(localStorage.getItem("members-crud"));
+        var i;
+        for (i=0;i<members.length;i++){
+          if (members[i].id == user.id) {
+            if(studentID) 
+            members[i].studentID=studentID;
+            if(task)
+            members[i].task=task;
+          }
+        }
+        console.log('done', members);
+        localStorage.setItem("members-crud", JSON.stringify(members));
+        window.location.reload();
     }
 
     return (
