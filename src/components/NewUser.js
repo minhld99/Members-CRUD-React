@@ -18,7 +18,8 @@ function NewUser() {
   }
   
   const addUser = (user) => {
-    user.id = users.length + 1
+    const last_user = users[(users.length) - 1]
+    user.id = last_user.id + 1
     setUsers([...users, user])
   }
 

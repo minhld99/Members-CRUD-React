@@ -10,8 +10,8 @@ function EditUser( { user, handleEdit } ) {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         console.log(user,studentID,task);
-        user.studentID=studentID;
-        user.task=task;
+        if(studentID) user.studentID=studentID;
+        if(task) user.task=task;
         handleEdit(user);
         window.$('#exampleModal').modal('hide');
     }
@@ -42,7 +42,7 @@ function EditUser( { user, handleEdit } ) {
                   </div>
                   <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" value='Submit' className="btn btn-primary" onClick = {(e) => handleSubmit(e)}>Save</button>
+                <button type="submit" value='Submit' className="btn btn-primary">Save</button>
               </div>
                 </form>
               </div>

@@ -14,6 +14,7 @@ function UserTable( { users } ) {
     const deleteIndex = newListUsers.findIndex(user => user.key === deleteUser.key)
     newListUsers.splice(deleteIndex,1)
     setListUsers([...newListUsers])
+    window.localStorage.setItem("members-crud", JSON.stringify(newListUsers));
   }
 
   const handleEditUser = (newInfor) =>{
@@ -21,6 +22,7 @@ function UserTable( { users } ) {
     const editIndex = newListUsers.findIndex(user => user.key === newInfor.key)
     newListUsers[editIndex] = newInfor
     setListUsers([...newListUsers])
+    window.localStorage.setItem("members-crud", JSON.stringify(newListUsers));
   }
   
   
@@ -30,7 +32,6 @@ function UserTable( { users } ) {
       <table id='user'>
         <thead>
           <tr>
-            <th>番号</th>
             <th>名前</th>
             <th>学籍番号</th>
             <th>タスク</th>
@@ -41,7 +42,6 @@ function UserTable( { users } ) {
           {listUsers.length > 0 ? (
             listUsers.map((user) => (
               <tr key={user.id}>
-                <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.studentID}</td>
                 <td>{user.task}</td>
@@ -53,7 +53,7 @@ function UserTable( { users } ) {
             ))
           ) : (
             <tr>
-              <td colSpan={5}>No members</td>
+              <td colSpan={4}>No members</td>
             </tr>
           )}
         </tbody>
