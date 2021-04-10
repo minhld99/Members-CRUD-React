@@ -15,6 +15,14 @@ function UserTable( { users } ) {
     newListUsers.splice(deleteIndex,1)
     setListUsers([...newListUsers])
   }
+
+  const handleEditUser = (newInfor) =>{
+    const newListUsers = [...listUsers]
+    const editIndex = newListUsers.findIndex(user => user.key === newInfor.key)
+    newListUsers[editIndex] = newInfor
+    setListUsers([...newListUsers])
+  }
+  
   
   return (
     <div>
@@ -38,7 +46,7 @@ function UserTable( { users } ) {
                 <td>{user.studentID}</td>
                 <td>{user.task}</td>
                 <td className='opration'>
-                  <EditUser user={user} />
+                  <EditUser user={user} handleEdit={(infor) =>handleEditUser(infor)}/>
                   <button className="button muted-button " onClick = {() => handleDeleteUSer(user)}>Delete</button>
                 </td>
               </tr>

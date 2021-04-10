@@ -3,7 +3,7 @@ import React from 'react'
 import UserTable from './UserTable'
 
 
-function EditUser( { user } ) {
+function EditUser( { user, handleEdit } ) {
     const [studentID, setStudentID] = React.useState('');
     const [task, setTask] = React.useState('');
 
@@ -12,8 +12,11 @@ function EditUser( { user } ) {
         console.log(user,studentID,task);
         user.studentID=studentID;
         user.task=task;
-        console.log('done',user);
+        handleEdit(user);
+        window.$('#exampleModal').modal('hide');
     }
+
+    
 
     return (
         <div>
@@ -39,7 +42,7 @@ function EditUser( { user } ) {
                   </div>
                   <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" value='Submit' className="btn btn-primary" >Save</button>
+                <button type="submit" value='Submit' className="btn btn-primary" onClick = {(e) => handleSubmit(e)}>Save</button>
               </div>
                 </form>
               </div>
