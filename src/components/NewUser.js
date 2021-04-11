@@ -3,6 +3,7 @@ import './../styles/newUser.css';
 
 /* カスタムフック */
 import useStorage from '../hooks/storage';
+import InputText from '../hooks/InputText';
 
 function NewUser() {
   const initialFormState = { id: null, name: '', studentID: '', task: '' }
@@ -24,6 +25,7 @@ function NewUser() {
     setUsers([...users, user])
     console.log(user)
   }
+  const [idChecker,onCheck] = InputText();
 
   return (
     <form
@@ -47,7 +49,9 @@ function NewUser() {
         name="studentID"
         value={user.studentID}
         onChange={handleInputChange}
+        onFocus={onCheck(user.studentID)}
       />
+      <p class = {onCheck(user.studentID)}>Duplicate Id</p>
       <label>タスク</label>
       <input
         type="text"

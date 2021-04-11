@@ -195,3 +195,9 @@ a.full-add-button {
   display: block;
   width: 100%;
 }
+.invalid {
+  color: red;
+}
+.valid {
+  display: none;
+}

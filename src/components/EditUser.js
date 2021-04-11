@@ -1,5 +1,6 @@
 import React from 'react'
 import './../styles/table.css';
+import InputText from '../hooks/InputText';
 
 function EditUser( { user, handleEdit } ) {
     const [studentID, setStudentID] = React.useState('');
@@ -13,7 +14,7 @@ function EditUser( { user, handleEdit } ) {
       handleEdit(user);
       window.$(modalID).modal('hide');
     }
-
+    const [idChecker,onCheck] = InputText();
     return (
       <div>
         <button type="button" className="button muted-button" data-toggle="modal" data-target={modalID} data-whatever="@mdo">編集</button>        
@@ -30,7 +31,9 @@ function EditUser( { user, handleEdit } ) {
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label htmlFor="recipient-name" className="col-form-label">学籍番号:</label>
-                    <input type="text" className="form-control" placeholder={user.studentID} id="recipient-name" value={studentID} onChange={e => setStudentID(e.target.value)} />
+                    <input type="text" className="form-control" placeholder={user.studentID} id="recipient-name" value={studentID} onChange={e => setStudentID(e.target.value)}
+                    onFocus={onCheck(studentID)} />
+                    <p class = {onCheck(studentID)}>Duplicate Id</p>
                   </div>
                   <div className="form-group">
                     <label htmlFor="message-text" className="col-form-label">タスク:</label>
