@@ -34,6 +34,11 @@ body {
   color: white;
 }
 
+#user td {
+  text-align: center;
+  white-space: pre-wrap;
+}
+
 .opration {
   text-align: center;
 }
@@ -41,7 +46,7 @@ body {
 .button {
   border: none;
   outline: none;
-  font-size: 11px;
+  font-size: 15px;
   font-family: "Quicksand", sans-serif;
   color: #f44336;
   padding: 3px 10px;

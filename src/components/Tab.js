@@ -18,12 +18,12 @@ function Tab() {
       title: '追加',
       content: ( <NewUser /> ),
     },
-    // {
-    //   id: 3,
-    //   icon: 'tabitem__icon fas fa-edit',
-    //   title: '編集',
-    //   content: 'edit function',
-    // },
+    {
+      id: 3,
+      icon: 'tabitem__icon fas fa-list',
+      title: 'タスク',
+      content: 'コンポーネント（６）：\nTab\nTabItem\nUser\nUserTable\nNewUser\nEditUser\n\nカスタムフック（２）:\nuseStorage\nuseInputText',
+    },
     // {
     //   id: 4,
     //   icon: 'tabitem__icon fas fa-user-slash',
